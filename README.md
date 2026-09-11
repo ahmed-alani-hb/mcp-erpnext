@@ -131,6 +131,12 @@ Generate API credentials in ERPNext:
 > (e.g. `https://mycompany.erpnext.com` or `https://mysite.frappe.cloud`). API
 > key authentication works the same way on self-hosted and cloud instances.
 
+> The repository is also shaped as a Frappe app (`pyproject.toml` +
+> `mcp_erpnext/`), so Frappe Cloud and `bench get-app` accept its URL. That app
+> is a no-op wrapper: it does not start the server, which still runs as a
+> separate process as shown above. See
+> [`docs/frappe-app.md`](docs/frappe-app.md).
+
 ### VS Code Copilot
 
 Add to `.vscode/mcp.json`:

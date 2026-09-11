@@ -8,3 +8,4 @@ src/ui/node_modules/
 src/ui/dist/
 dist-node/
 .DS_Store
+__pycache__/
