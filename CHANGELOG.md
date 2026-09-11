@@ -4,6 +4,15 @@ All notable changes to `@casys/mcp-erpnext` will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- The repository is now shaped as a Frappe app (`pyproject.toml` plus a no-op
+  `mcp_erpnext/` package), so Frappe Cloud and `bench get-app` accept its URL
+  instead of rejecting it with "pyproject.toml does not exist in app directory".
+  Installing the app changes nothing on the site and does not start the MCP
+  server, which still runs as a separate process against the site's REST API.
+  See [`docs/frappe-app.md`](docs/frappe-app.md).
+
 ### Fixed
 
 - Purchase Invoices show their effective total and a small information icon

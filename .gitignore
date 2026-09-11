@@ -10,3 +10,8 @@ src/ui/node_modules/
 .serena/
 .DS_Store
 **/.DS_Store
+
+# Frappe app wrapper (Python build artifacts)
+__pycache__/
+*.py[cod]
+*.egg-info/

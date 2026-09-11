@@ -37,6 +37,11 @@ workflows, and interactive UI viewers. Published as `@casys/mcp-erpnext` on npm
   (Node.js) — the build script swaps them.
 - **Scripts**: `scripts/build-node.sh` produces the npm bundle.
 - **Docs**: `docs/` contains roadmap, known issues, and coverage notes.
+- **Frappe app wrapper**: `pyproject.toml` + `mcp_erpnext/` make the repo a
+  valid Frappe app so Frappe Cloud and `bench get-app` accept the URL. It is a
+  no-op app (no hooks, no DocTypes) — the MCP server still runs as a separate
+  Deno/Node process against the site's REST API. See
+  [`docs/frappe-app.md`](docs/frappe-app.md).
 - Keep UI-only deps in `src/ui/package.json`; do not add them to `deno.json`.
   Conversely, server-side deps go in the `deno.json` import map.
 
@@ -396,16 +401,18 @@ This project follows **semver** (`MAJOR.MINOR.PATCH`):
 - **PATCH**: bug fixes, documentation, internal refactors with no user-facing
   change.
 
-Version locations (both must stay in sync):
+Version locations (all three must stay in sync):
 
 1. `deno.json` → `version` field (used by JSR publish and npm build script)
 2. `server.ts` → `McpApp` constructor `version` parameter (runtime metadata)
+3. `mcp_erpnext/__init__.py` → `__version__` (the Frappe app wrapper; PEP 440
+   spelling, so `3.1.0-beta.6` becomes `3.1.0b6`)
 
 Rules:
 
 - Do not bump version numbers during feature work.
-- Release version bumps require explicit approval and must update both
-  `deno.json` and `server.ts`.
+- Release version bumps require explicit approval and must update `deno.json`,
+  `server.ts`, and `mcp_erpnext/__init__.py`.
 - CHANGELOG follows [Keep a Changelog](https://keepachangelog.com/) format. Only
   user-facing changes.
 
@@ -519,7 +526,7 @@ running in its own compose project), join that stack's external network instead
 ### Release a version
 
 1. Get explicit approval for the version.
-2. Update `deno.json` and `server.ts`.
+2. Update `deno.json`, `server.ts`, and `mcp_erpnext/__init__.py`.
 3. Update `CHANGELOG.md` with user-facing changes.
 4. Run `deno task release:check`.
 5. Commit and push to `main`.

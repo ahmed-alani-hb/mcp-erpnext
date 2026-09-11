@@ -1,0 +1,23 @@
+[project]
+name = "mcp_erpnext"
+description = "Frappe app wrapper for the @casys/mcp-erpnext MCP server"
+authors = [
+    { name = "Casys AI", email = "contact@casys.ai" },
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dynamic = ["version"]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/Casys-AI/mcp-erpnext"
+Repository = "https://github.com/Casys-AI/mcp-erpnext"
+Changelog = "https://github.com/Casys-AI/mcp-erpnext/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.frappe-dependencies]
+frappe = ">=15.0.0,<17.0.0"
